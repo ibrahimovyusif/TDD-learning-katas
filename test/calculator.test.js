@@ -7,7 +7,7 @@ chai.expect;
 
 var add = require('../controllers/tdd-add');
 
-describe('testing add method', function () {
+describe.only('testing add method', function () {
 	
 	it ('should return 0 when input is empty', function () {
 
@@ -127,7 +127,7 @@ describe('testing add method', function () {
 	it ('should return an exception when a negative number is given ', function () {
 
 		// setup
-		var input ='//;1,-2\n3,-4,5,6,7\n8,9\n11\n'; 
+		var input ='//;\n1,-2\n3,-4,5,6,7\n8,9\n11\n'; 
 		
 		// expectation
 		var expected = 'negative numbers are not allowed: -2,-4';
@@ -167,10 +167,10 @@ describe('testing add method', function () {
 
 	});	
 
-	it.only ('should return the sum of inputs when the amount of inputs is unknown and there are different lengths of delimiters between numbers', function () {
+	it ('should return the sum of inputs when the amount of inputs is unknown and there are different lengths of delimiters between numbers', function () {
 
 		// setup
-		var input ='//;;;\n1;;;2;;;3;;;4;;;5;;;6;;;7;;;8;;;9;;;11'; 
+		var input ='//[;;;;]\n1;;;;2;;;;3;;;;4;;;;5;;;;6;;;;7;;;;8;;;;9;;;;11'; 
 		
 		// expectation
 		var expected = 56;
@@ -186,23 +186,25 @@ describe('testing add method', function () {
 
 	});	
 
-	// it ('should return the sum of inputs when the amount of inputs is unknown and there are different kind of delimiters between numbers', function () {
-
-	// 	// setup
-	// 	var input ='//;%\n1;2%3;4%5;6%7;8%9;11'; 
-		
-	// 	// expectation
-	// 	var expected = 56;
-		
-	// 	// action / execution 
-	// 	var result = add(input);
-		
-	// 	// validation
-	// 	assert.equal(result,expected);
-		
-	// 	// teardown
 
 
-	// });	
+	it.only ('should return the sum of inputs when the amount of inputs is unknown and there are different kind of delimiters between numbers', function () {
+
+		// setup
+		var input ='//[;][%][&]\n1;%&;%&2;%&3;%&4;%&5;%&6;%&7;%&8;%&9;%&11'; 
+		
+		// expectation
+		var expected = 56;
+		
+		// action / execution 
+		var result = add(input);
+		
+		// validation
+		assert.equal(result,expected);
+		
+		// teardown
+
+
+	});	
 
 });

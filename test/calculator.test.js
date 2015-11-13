@@ -7,7 +7,7 @@ chai.expect;
 
 var add = require('../controllers/tdd-add');
 
-describe.only('testing add method', function () {
+describe.only  ('testing add method', function () {
 	
 	it ('should return 0 when input is empty', function () {
 
@@ -188,10 +188,10 @@ describe.only('testing add method', function () {
 
 
 
-	it.only ('should return the sum of inputs when the amount of inputs is unknown and there are different kind of delimiters between numbers', function () {
+	it('should return the sum of inputs when the amount of inputs is unknown and there are different kind of delimiters between numbers', function () {
 
 		// setup
-		var input ='//[;][%][&]\n1;%&;%&2;%&3;%&4;%&5;%&6;%&7;%&8;%&9;%&11'; 
+		var input ='//[;][%][&]\n1;2%3&4&5&6;7%8;9&11'; 
 		
 		// expectation
 		var expected = 56;
@@ -206,5 +206,29 @@ describe.only('testing add method', function () {
 
 
 	});	
+
+	it ('should return eror on ', function () {
+
+		// setup
+		var input ='//[;][a][&]\n1;%%2&%3&4&&5&6;7a9&111'; 
+		
+		var expected = 'This kind of delimiter is not existed';
+		
+		// action / execution 
+		try {
+			var result = add(input);
+			assert.fail(null, null, 'Incorrect delimiter error not thrown');
+		}
+		catch (err) {
+
+			// validation
+			assert.equal(err.message, expected);
+		}
+
+
+	});	
+
+
+
 
 });
